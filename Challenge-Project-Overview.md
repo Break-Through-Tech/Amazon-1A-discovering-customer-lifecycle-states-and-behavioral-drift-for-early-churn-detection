@@ -34,7 +34,7 @@
 - **Overall Recommendation:** REVISE
 
 ### Advisor Feedback Draft
-This project offers a compelling synthesis of classical ML and Generative AI, providing students with high-value exposure to explainable systems. To ensure success within the 12-week window, I suggest: (1) Standardize the 'Churn' definition early to avoid ambiguity during the modeling phase, and (2) Replace complex LLM integrations with a deterministic template-based generation approach to minimize API dependency issues. Please streamline the scope to ensure the core classification pipeline is robust before layering on GenAI features.
+This project offers a compelling synthesis of classical ML and Generative AI, providing students with high-value exposure to explainable systems. To ensure success within the 12-week window, I suggest: (1) Standardize the 'Churn' definition early to avoid ambiguity during the modeling phase, and (2) Replace complex LLM integrations with a deterministic template-based generation approach to minimize API dependency issues. Streamlining the scope will help to ensure the core classification pipeline is robust before layering on GenAI features (which could be the stretch goal for the Fellows).
 
 ---
 
