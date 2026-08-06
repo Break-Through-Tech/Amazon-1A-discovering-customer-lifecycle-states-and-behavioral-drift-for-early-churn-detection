@@ -56,7 +56,10 @@ Amazon is a global leader in e-commerce, cloud computing, and digital streaming,
 In this project, you will use public e-commerce customer transaction and event-behavior data and machine learning techniques including time-series feature engineering, clustering, classification, behavioral drift detection, explainable AI, and generative AI to build a system that detects early behavioral changes in customers before they churn and generates interpretable customer-risk summaries. This will help us address the business problem of identifying at-risk customers earlier, improving retention strategies, and reducing revenue loss from preventable customer churn.
 
 ### Success Criteria
-Predictive performance (accuracy, precision, recall, F1 score, ROC-AUC), early-warning horizon (days/weeks before churn), interpretability of discovered customer states, and qualitative evaluation of GenAI summaries.
+Success will be measured using both predictive performance and early-warning usefulness. The team will evaluate churn prediction using accuracy, precision, recall, F1 score, and ROC-AUC. Since the project focuses on early detection, the team will also measure early-warning horizon, defined as how many days or weeks before churn the system can identify meaningful behavioral drift. The lifecycle-state approach will be evaluated by whether the discovered customer states are interpretable and whether transitions into at-risk states improve early churn detection compared with standard churn models. The GenAI component will be evaluated qualitatively based on whether it produces accurate, clear, and useful summaries grounded in the model’s features and explanations. A successful December outcome would be a reproducible Python/Google Colab pipeline that ingests public e-commerce datasets, creates customer-time features, discovers lifecycle states, predicts churn risk, explains the drivers of risk, and generates plain-English risk summaries for at-risk customers.
+
+### Stretch Goals
+If the team progresses quickly, stretch goals could include building customer behavior embeddings using autoencoders or sequence models, comparing lifecycle-state discovery across multiple datasets, adding a lightweight dashboard using Streamlit or Gradio, improving the GenAI component with prompt templates or retrieval-augmented generation over customer history, or developing retention recommendation logic based on the type of behavioral drift detected.
 
 ### Project Milestones
 Use these milestones to guide your work. Your team will create a GitHub Projects board to track tasks within each milestone.
@@ -71,10 +74,10 @@ Use these milestones to guide your work. Your team will create a GitHub Projects
 ---
 
 ## 📊 Dataset
-**Name and Source:** Online Retail II and RetailRocket datasets (Publicly accessible via Kaggle/UCI)  
+**Name and Source:** Publicly accessible via Kaggle/UCI  
 **Format:** CSV/TSV and Excel  
 **Size:** under 1gb  
-**Location:** Internal data repository or provided web links via project Slack channel  
+**Location:** https://archive.ics.uci.edu/dataset/502/online%2Bretail%2Bii, https://www.kaggle.com/datasets/retailrocket/ecommerce-dataset
 
 ### Key Details
 - Publicly available e-commerce data (Online Retail II and RetailRocket datasets), including numerical, categorical, text, and time-series data in CSV/TSV and Excel formats.
@@ -83,52 +86,68 @@ Use these milestones to guide your work. Your team will create a GitHub Projects
 ---
 
 ## 🛠️ Suggested Approach
+
 **ML Problem Type:** Classification, Clustering, and NLP (Generative AI)  
+
 **Recommended Libraries:**
-- Python
-- Google Colab
-- Logistic Regression
-- Random Forest
-- XGBoost
-- K-Means
-- Gaussian Mixture Models
-- HDBSCAN
-- SHAP
-- GenAI
-**Evaluation Metrics:** F1-score, Precision-Recall AUC, time-to-churn horizon, and qualitative readability/accuracy scores for GenAI summaries.
+- [e.g., pandas, scikit-learn, TensorFlow, Hugging Face]
+
+**Evaluation Metrics:**
+- [e.g., Accuracy, Precision/Recall, RMSE, BLEU score]
 
 ---
 
 ## 📚 Resources to Get Started
+
 The following resources will help your team understand the problem space and potential technical approaches for this project:
+
 **Background Reading:**
-- Industry documentation on "Customer Churn Prediction in Retail" and "Explainable AI for Risk Management."
+- [e.g., Link to an article or blog post about the problem domain]
+- [e.g., Link to an industry report or case study]
+
 **Technical Tutorials:**
-- Scikit-learn documentation for time-series splits and SHAP library tutorials for feature importance visualization.
+- [e.g., Link to a free tutorial on the ML technique(s) involved]
+- [e.g., Link to documentation for a key library or tool]
+
 **Code Examples:**
-- Baseline repository templates for tabular classification and K-means clustering patterns.
+- [e.g., Link to a relevant GitHub repo]
+- [e.g., Link to a sample implementation or starter code]
+
+**Other:**
+- [Links to any additional resources — e.g., papers, videos, podcasts, etc.]
+
+*Feel free to explore beyond these, and share anything interesting you find with me!*
 
 ---
 
 ## 🤝 How We'll Work Together
-**Check-ins:** During our biweekly 60-min AI Studio Lab Section meeting block (2nd and 4th week of every month)  
-**Communication:** Official Studio Slack channel and team-designated email threads.  
-**Response time:** 24-48 hours during business days.  
-**Recommended Tools:**
-- **Coding:** Google Colab Free Tier  
-- **Collaboration:** GitHub, Notion  
-- **Virtual Meetings:** Zoom, Google Meet  
+
+**Official check-ins:** During our biweekly 45-minute AI Studio Lab Section meeting block (2nd and 4th week of every month)
+
+ **Other ways to reach out to me with questions:** 
+* [e.g., Your team's channel within Break Through Tech’s Discord space]
+* [e.g., Email; please copy your teammates and AI Studio Coach]
+* [e.g., Request a team check-in on Zoom]
+* [Note: I will aim to respond within 48 hours. Please reach out to your AI Studio Coach with urgent questions.]
+
+> 💡 **Challenge Advisor: Please update the above based on your availability and preference. If you are not able to answer questions or meet with fellows outside of the biweekly Lab Section check-ins, simply write in "N/A (only available during the official check-in times)"**
+
+**Recommended free coding / collaboration tools**
+* […]
+* […]
 
 ---
 
 ## 🚀 Getting Started
-1. **Review this overview document** and note any questions for our first meeting.
-2. **Begin reviewing the dataset** using the link provided in the Dataset section.
-3. **Read the GitHub Projects documentation** [here](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects).
 
-I'm excited to work with you!
+1. **Review this overview document** and note any questions for our first meeting
+2. **Begin reviewing the dataset** using the link above
+3. **Read the GitHub Projects documentation** [here](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)
+
+I’m excited to work with you!
 
 ---
 
 ## ❓ Questions?
-Please bring any questions to our first meeting during the week of August 24th (Break Through Tech's Bridge to Studio - Session B).
+
+Please bring any questions to our first meeting during the week of August 24th (Break Through Tech’s Bridge to Studio - Session C). 
