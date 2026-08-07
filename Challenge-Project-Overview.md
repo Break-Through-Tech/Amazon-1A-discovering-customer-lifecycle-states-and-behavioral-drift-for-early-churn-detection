@@ -41,7 +41,8 @@ This project offers a compelling synthesis of classical ML and Generative AI, pr
 # Discovering Customer Lifecycle States and Behavioral Drift for Early Churn Detection Using Explainable AI and Generative AI
 
 **Company / Org:** Amazon.com  
-**Challenge Advisor:** Aryyama Kumar Jana, Lakshmi Prasanna Kachireddy, janaaryyama@gmail.com  
+**Challenge Advisor:** Aryyama Kumar Jana, Lakshmi Prasanna Kachireddy, janaaryyama@gmail.com   
+**AI Studio Coach:** Ayush Amberkar, ayush.amberkar@breakthroughtech.org  
 **Program:** Break Through Tech AI Studio - Fall 2026  
 
 ---
