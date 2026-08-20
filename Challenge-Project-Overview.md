@@ -1,88 +1,60 @@
----
 
-> ## Challenge Advisor: Update & Finalize Your Project Overview
->
-> > 💡 **These grey text instructions are just for you, the team's Challenge Advisor; please delete them once you have completed the steps below.**
->
-> We've pre-populated this Challenge Project Overview page — which is what will be shared with your Break Through Tech student team in August — using the details from your submission form. You should have received an email inviting you to join this repo as a Collaborator, enabling you to add files and make edits.
-> 
-> In order for your project to be finalized and assigned to a team, please:
-> 1. **Review all sections below** and update or expand any content as needed, making sure to address the SME Feedback in the section immediately below. Look for square brackets to find the places below that require additional inputs from you (e.g., "About [Company / Org Name]").
-> 2. **Add your dataset** to the [data folder](data) in this repo.
-> 3. **Close the Issue assigned to you in this repo** to let us know that you have made your edits and the overview page is ready for final review. You can do this by going to the _Issues_ tab in the top left section of the menu above, add a comment that says "CA review complete", and click the button to Close the Issue. 
->
-> If you're unfamiliar with how to edit a page like this in GitHub, check out [this tutorial](https://ubc-lib-geo.github.io/gis-workshop-waml-template/content/handson/edit-readme.html) for a quick overview (start with step 2 and only edit this page), and [this guide](https://ubc-lib-geo.github.io/gis-workshop-waml-template/content/markdown.html) on how to use Markdown to compose text.
->
->
-> ❌ Remember that this is a public repo. Do NOT include: Proprietary data, PII, API keys, credentials, or anything confidential.
-
----
-
-## 📋 BTT Internal Evaluation Notes
-*(This section is for BTT staff and CAs only — remove before sharing with students)*
-
-### Technical Vetting
-| Check | Status | Notes |
-| :--- | :--- | :--- |
-| Python Compatibility | 🟢 | Stack aligns perfectly with scikit-learn, pandas, and SHAP. GenAI component must be limited to local HuggingFace transformers or OpenAI API with strict usage limits. |
-| Data Readiness | 🟡 | Public retail datasets are well-documented but require significant feature engineering to construct time-series windows and label churn. |
-| Resource Check | 🟢 | Dataset size is well within Google Colab limits. No requirement for proprietary hardware. |
-
-### Internal Scores
-- **Student Fit Score:** 7/10
-- **Technical Depth Score:** 8/10
-- **Overall Recommendation:** REVISE
-
-### Advisor Feedback Draft
-This project offers a compelling synthesis of classical ML and Generative AI, providing students with high-value exposure to explainable systems. To ensure success within the 12-week window, I suggest: (1) Standardize the 'Churn' definition early to avoid ambiguity during the modeling phase, and (2) Replace complex LLM integrations with a deterministic template-based generation approach to minimize API dependency issues. Streamlining the scope will help to ensure the core classification pipeline is robust before layering on GenAI features (which could be the stretch goal for the Fellows).
-
----
 
 # Discovering Customer Lifecycle States and Behavioral Drift for Early Churn Detection Using Explainable AI and Generative AI
 
 **Company / Org:** Amazon.com  
-**Challenge Advisor:** Aryyama Kumar Jana, Lakshmi Prasanna Kachireddy, janaaryyama@gmail.com   
+**Challenge Advisor:** Aryyama Kumar Jana, janaaryyama@gmail.com   
 **AI Studio Coach:** Ayush Amberkar, ayush.amberkar@breakthroughtech.org  
 **Program:** Break Through Tech AI Studio - Fall 2026  
 
 ---
 
-## 🏢 About Amazon.com
-Amazon is a global leader in e-commerce, cloud computing, and digital streaming, operating at the intersection of retail innovation and logistics efficiency. This project team will refine customer retention strategies by applying advanced machine learning to large-scale transactional datasets.
+## About the Challenge Advisor and Project Context
+Aryyama Kumar Jana is a Software Development Engineer at Amazon.com. This Challenge Project is designed by the Challenge Advisor in a personal volunteer capacity and is not submitted on behalf of Amazon or any employer. The project is inspired by broad, industry-wide problems in customer analytics and retention, but it will use only publicly available datasets and open-source methods. No Amazon confidential data, internal systems, proprietary workflows, customer information, or non-public business context will be used.
 
 ---
 
 ## 🎯 The Challenge
 ### Project Summary
-In this project, you will use public e-commerce customer transaction and event-behavior data and machine learning techniques including time-series feature engineering, clustering, classification, behavioral drift detection, explainable AI, and generative AI to build a system that detects early behavioral changes in customers before they churn and generates interpretable customer-risk summaries. This will help us address the business problem of identifying at-risk customers earlier, improving retention strategies, and reducing revenue loss from preventable customer churn.
+In this project, you will use public e-commerce customer transaction and event-behavior data and machine learning techniques including time-series feature engineering, clustering, classification, behavioral drift detection, and explainable AI to build an early-warning system that detects meaningful customer behavior changes before churn occurs. The system will also generate grounded, plain-English risk summaries using deterministic template-based generation from model outputs and feature explanations. This will help organizations address the business problem of identifying at-risk customers earlier, improving retention strategies, and reducing revenue loss from preventable customer churn.
+
+### Churn Definition and Modeling Boundary
+For the primary Online Retail II dataset, churn will be defined using a forward-looking inactivity window. A customer-month will be labeled as churn-risk positive if the customer makes no purchase in the next 90 days after that month. Features for each customer-month must only use information available up to that point in time, so the model does not use future information when making predictions. Customer-months too close to the end of the dataset, where a full 90-day future observation window is not available, should be excluded from supervised model training.
 
 ### Success Criteria
-Success will be measured using both predictive performance and early-warning usefulness. The team will evaluate churn prediction using accuracy, precision, recall, F1 score, and ROC-AUC. Since the project focuses on early detection, the team will also measure early-warning horizon, defined as how many days or weeks before churn the system can identify meaningful behavioral drift. The lifecycle-state approach will be evaluated by whether the discovered customer states are interpretable and whether transitions into at-risk states improve early churn detection compared with standard churn models. The GenAI component will be evaluated qualitatively based on whether it produces accurate, clear, and useful summaries grounded in the model’s features and explanations. A successful December outcome would be a reproducible Python/Google Colab pipeline that ingests public e-commerce datasets, creates customer-time features, discovers lifecycle states, predicts churn risk, explains the drivers of risk, and generates plain-English risk summaries for at-risk customers.
+Success will be measured using both predictive performance and early-warning usefulness. The team will evaluate churn prediction using precision, recall, F1 score, ROC-AUC, and PR-AUC. Since this project focuses on early detection, the team will also measure early-warning horizon, defined as how many days or weeks before churn the system can identify meaningful behavioral drift or a transition into an at-risk lifecycle state. The lifecycle-state approach will be evaluated by whether the discovered customer states are interpretable and whether transitions into at-risk states improve early churn detection compared with standard churn models. The explanation component will be evaluated based on whether generated risk summaries are accurate, clear, and grounded in actual model features, SHAP values, or drift metrics. A successful December outcome would be a reproducible Python/Google Colab pipeline that ingests public e-commerce data, creates customer-time features, applies a standardized churn definition, trains baseline models, discovers customer lifecycle states, measures early-warning performance, and produces explainable customer-risk summaries.
 
 ### Stretch Goals
-If the team progresses quickly, stretch goals could include building customer behavior embeddings using autoencoders or sequence models, comparing lifecycle-state discovery across multiple datasets, adding a lightweight dashboard using Streamlit or Gradio, improving the GenAI component with prompt templates or retrieval-augmented generation over customer history, or developing retention recommendation logic based on the type of behavioral drift detected.
+If the team progresses quickly, stretch goals could include building customer behavior embeddings using autoencoders or sequence models, comparing lifecycle-state discovery across Online Retail II and RetailRocket, adding a lightweight dashboard using Streamlit or Gradio, testing a small local open-source language model for narrative summaries, or developing simple retention recommendation logic based on the type of behavioral drift detected. GenAI should be treated as optional or stretch; the required project should work with deterministic, template-based summaries without paid APIs.
 
 ### Project Milestones
 Use these milestones to guide your work. Your team will create a GitHub Projects board to track tasks within each milestone.
 | Month | Milestone | Key Activities |
 |-------|-----------|----------------|
-| **September** | Colab Notebook | The team will focus on understanding the business problem, exploring public datasets, and building the foundational data pipeline. Fellows will review open-source e-commerce datasets such as Online Retail II and RetailRocket, clean the data, define a practical churn label, and create the first version of a customer-time feature table. Initial features may include purchase frequency, activity count, revenue, unique items, average order value, and days since last activity. By the end of September, the team should have a reproducible Google Colab notebook that converts raw public data into modeling-ready customer behavior features. |
-| **October** | Baseline Churn Model | The team will build baseline models and begin analyzing customer behavior changes over time. Fellows will train traditional churn prediction models such as Logistic Regression, Random Forest, and XGBoost, then evaluate them using metrics such as precision, recall, F1 score, and ROC-AUC. The team will also create behavioral drift features that compare a customer’s current behavior with their previous behavior, such as changes in purchase frequency, revenue, activity count, and unique items. By the end of October, the team should have baseline churn models and an initial behavioral drift scoring approach. |
-| **November** | Final Deliverables | The team will develop the advanced lifecycle-state, explainability, and GenAI components. Fellows will apply clustering methods such as K-Means, Gaussian Mixture Models, or HDBSCAN to discover latent customer lifecycle states, such as active buyer, occasional buyer, declining customer, and at-risk customer. The team will compare the lifecycle-state and behavioral-drift approach against baseline churn models, measure how early churn risk can be detected, and use explainability methods such as SHAP or feature attribution to identify the strongest drivers of risk. As a final layer, the team will add a lightweight Generative AI component that converts model outputs into plain-English customer-risk summaries and possible retention recommendations. By the end of November, the team should have a final end-to-end demo, evaluation results, and explainable GenAI-generated summaries for at-risk customers. |
+| **September** | Data Pipeline and Churn Definition | The team will focus on understanding the business problem, exploring the public datasets, and building the foundational data pipeline. Fellows will use Online Retail II as the primary dataset, combine both Excel sheets, clean transactions, handle missing customer IDs, remove or separately handle canceled invoices, convert timestamps, and create a customer-month feature table. The team will standardize the churn definition using a 90-day forward-looking inactivity window and ensure features only use information available before the prediction point. By the end of September, the team should have a reproducible Google Colab notebook that converts raw public data into modeling-ready customer-time features. |
+| **October** | Baseline Modeling and Behavioral Drift | The team will train baseline churn prediction models such as Logistic Regression, Random Forest, and XGBoost, then evaluate them using precision, recall, F1 score, ROC-AUC, and PR-AUC. The team will also create behavioral drift features that compare a customer’s current behavior with previous behavior, such as changes in purchase frequency, revenue, unique items, average order value, and days since last purchase. By the end of October, the team should have working baseline churn models and an initial behavioral drift scoring approach. |
+| **November** | Lifecycle States, Explainability, and Final Demo | TThe team will apply clustering methods such as K-Means, Gaussian Mixture Models, or HDBSCAN to discover latent customer lifecycle states, such as active buyer, occasional buyer, declining customer, and at-risk customer. The team will compare the lifecycle-state and behavioral-drift approach against baseline churn models, measure early-warning horizon, add explainability using SHAP or feature attribution, and generate deterministic template-based customer-risk summaries. By the end of November, the team should have a final end-to-end demo, evaluation results, and clear explanations of which behavioral changes indicate future churn risk. |
 
 > **Note for the team:** Please create a GitHub Projects board in this repository to break these milestones into weekly tasks. Go to the **Projects** tab → **New project** → Choose **Board** → Add columns for each month.
 
 ---
 
 ## 📊 Dataset
-**Name and Source:** Publicly accessible via Kaggle/UCI  
-**Format:** CSV/TSV and Excel  
-**Size:** under 1gb  
-**Location:** https://archive.ics.uci.edu/dataset/502/online%2Bretail%2Bii, https://www.kaggle.com/datasets/retailrocket/ecommerce-dataset
+**Name and Source:**
+- Primary dataset: Online Retail II from the UCI Machine Learning Repository
+- Optional secondary dataset: RetailRocket E-commerce Dataset from Kaggle
+
+**Location:**
+- https://archive.ics.uci.edu/dataset/502/online%2Bretail%2Bii
+- https://www.kaggle.com/datasets/retailrocket/ecommerce-dataset
 
 ### Key Details
-- Publicly available e-commerce data (Online Retail II and RetailRocket datasets), including numerical, categorical, text, and time-series data in CSV/TSV and Excel formats.
+- Online Retail II will be the primary dataset for feature engineering, churn-label construction, modeling, lifecycle-state discovery, and evaluation.
+- RetailRocket may be used as an optional secondary validation dataset if time allows. Because RetailRocket is event-based while Online Retail II is transaction-based, students will map both datasets into a common customer-time behavioral representation rather than expecting the raw schemas to match.
 - Preprocessing must account for temporal sequencing, handle high-cardinality categorical variables, and normalize transactional volume across different customer segments.
+- The team will define churn using a standardized forward-looking inactivity window. For the primary Online Retail II dataset, a customer-month will be labeled as churn-risk positive if the customer makes no purchase in the next 90 days after that month.
+- The project will use only publicly available datasets. No Amazon data, employer data, confidential data, proprietary workflows, or non-public business context will be used.
+- Required preprocessing includes timestamp conversion, cancellation handling, missing customer filtering, customer-time window creation, churn-label construction, behavioral drift feature engineering, and leakage prevention.
 
 ---
 
@@ -91,10 +63,20 @@ Use these milestones to guide your work. Your team will create a GitHub Projects
 **ML Problem Type:** Classification, Clustering, and NLP (Generative AI)  
 
 **Recommended Libraries:**
-- [e.g., pandas, scikit-learn, TensorFlow, Hugging Face]
+- pandas and NumPy for data cleaning and feature engineering
+- scikit-learn for preprocessing, baseline models, clustering, and evaluation
+- XGBoost or LightGBM for stronger churn classification baselines
+- SHAP for explainability
+- matplotlib or plotly for visualization
+- optional: hdbscan for lifecycle-state discovery
+- optional: Streamlit or Gradio for a lightweight demo
+- optional: Hugging Face Transformers only if the team has time and can run a small local model in Colab
 
 **Evaluation Metrics:**
-- [e.g., Accuracy, Precision/Recall, RMSE, BLEU score]
+- Classification: precision, recall, F1 score, ROC-AUC, PR-AUC
+- Early detection: average early-warning horizon in days or weeks before churn
+- Clustering: silhouette score plus qualitative interpretability of lifecycle states
+- Explainability: whether generated risk summaries are grounded in actual model features, SHAP values, or behavioral drift metrics
 
 ---
 
@@ -103,19 +85,19 @@ Use these milestones to guide your work. Your team will create a GitHub Projects
 The following resources will help your team understand the problem space and potential technical approaches for this project:
 
 **Background Reading:**
-- [e.g., Link to an article or blog post about the problem domain]
-- [e.g., Link to an industry report or case study]
+- [Online Retail II dataset: https://archive.ics.uci.edu/dataset/502/online%2Bretail%2Bii
+- RetailRocket dataset: https://www.kaggle.com/datasets/retailrocket/ecommerce-dataset
+- Customer churn overview: https://en.wikipedia.org/wiki/Customer_attrition
 
 **Technical Tutorials:**
-- [e.g., Link to a free tutorial on the ML technique(s) involved]
-- [e.g., Link to documentation for a key library or tool]
+- pandas groupby: https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html
+- scikit-learn model evaluation: https://scikit-learn.org/stable/modules/model_evaluation.html
+- scikit-learn clustering: https://scikit-learn.org/stable/modules/clustering.html
+- SHAP documentation: https://shap.readthedocs.io/
 
 **Code Examples:**
-- [e.g., Link to a relevant GitHub repo]
-- [e.g., Link to a sample implementation or starter code]
-
-**Other:**
-- [Links to any additional resources — e.g., papers, videos, podcasts, etc.]
+- Starter notebook should include reading Online Retail II Excel sheets, cleaning transactions, creating customer-month features, defining the 90-day churn label, training a baseline model, and evaluating results.
+- Students are encouraged to keep the first version simple and reproducible before adding lifecycle-state discovery or narrative summaries.
 
 *Feel free to explore beyond these, and share anything interesting you find with me!*
 
@@ -126,16 +108,17 @@ The following resources will help your team understand the problem space and pot
 **Official check-ins:** During our biweekly 45-minute AI Studio Lab Section meeting block (2nd and 4th week of every month)
 
  **Other ways to reach out to me with questions:** 
-* [e.g., Your team's channel within Break Through Tech’s Discord space]
-* [e.g., Email; please copy your teammates and AI Studio Coach]
-* [e.g., Request a team check-in on Zoom]
-* [Note: I will aim to respond within 48 hours. Please reach out to your AI Studio Coach with urgent questions.]
-
-> 💡 **Challenge Advisor: Please update the above based on your availability and preference. If you are not able to answer questions or meet with fellows outside of the biweekly Lab Section check-ins, simply write in "N/A (only available during the official check-in times)"**
+* Use the team’s Break Through Tech communication channel for project questions.
+* For longer technical questions, students may email me and copy the full team and AI Studio Coach.
+* I will aim to respond within a week.
+* For urgent program logistics, please contact the AI Studio Coach.
 
 **Recommended free coding / collaboration tools**
-* […]
-* […]
+* Google Colab
+* GitHub
+* GitHub Projects
+* pandas, scikit-learn, XGBoost/LightGBM, SHAP
+* optional: Streamlit or Gradio for demo UI
 
 ---
 
